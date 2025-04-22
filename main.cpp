@@ -19,7 +19,7 @@ using sf::Sprite;
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
-    vector<string> TextureNames = {"geisha.png", "open_hand_button.png", "open_hand_computer.png", "fist_button.png","background.png","capture_object_button.png","hand_holding_the_thing.png","object_in_center.png","computer_fist_on_table.png"};
+    vector<string> TextureNames = {"geisha.jpg", "open_hand_button.png", "open_hand_computer.png", "fist_button.png","background.png","capture_object_button.png","hand_holding_the_thing.png","object_in_center.png","computer_fist_on_table.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
