@@ -15,10 +15,11 @@ using std::ifstream;
 using sf::RenderWindow;
 using std::to_string;
 using sf::Event;
+using sf::Sprite;
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
-    vector<string> TextureNames = {"Geisha.png", "open hand button.png", "open hand computer.png", "fist button.png","Background.png","capture object button.png","Hand holding the thing.png","object in center.png","computer fist on table.png"};
+    vector<string> TextureNames = {"Geisha.png", "OpenHandButton.png", "OpenHandComputer.png", "FistButton.png","Background.png","CaptureObjectButton.png","HandHoldingTheThing.png","ObjectInCenter.png","ComputerFistOnTable.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -29,19 +30,30 @@ map<string, Texture> TextureLoad(){
     return TextureMap;
 }
 
-int main() {
+int main(){
     RenderWindow window(sf::VideoMode(800, 600), "Konpira");
 
-    while(window.isOpen()) {
+    map<string, Texture> TextureMap = TextureLoad();
+    Sprite OpenHandButton(TextureMap.at("OpenHandButton.png")), FistButton(TextureMap.at("FistButton.png")), CaptureButton(TextureMap.at("CaptureObjectButton.png"));
+
+    OpenHandButton.setPosition(static_cast<float>(32), static_cast<float>(5));
+    FistButton.setPosition(static_cast<float>(32), static_cast<float>(20));
+    CaptureButton.setPosition(static_cast<float>(32), static_cast<float>(40));
+
+    while(window.isOpen()){
         Event event;
-        while(window.pollEvent(event)) {
-            if(event.type == Event::Closed) {
+        while(window.pollEvent(event)){
+            if(event.type == Event::Closed){
                 window.close();
             }
 
         }
 
         window.clear();
+
+        window.draw(OpenHandButton);
+        window.draw(FistButton);
+        window.draw(CaptureButton);
 
         window.display();
     }
