@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(FINAL) ##add project name here replacing FINAL
@@ -13,4 +13,5 @@ set(SFML_DIR "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit
 
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
 add_executable(FINAL main.cpp) ##add project name here replacing FINAL
+##set_target_properties(FINAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}")
 target_link_libraries(FINAL sfml-system sfml-window sfml-graphics sfml-audio) ## add project name here replacing FINAL
