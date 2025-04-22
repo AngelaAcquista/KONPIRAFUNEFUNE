@@ -19,7 +19,7 @@ using sf::Sprite;
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
-    vector<string> TextureNames = {"Geisha.png", "OpenHandButton.png", "OpenHandComputer.png", "FistButton.png","Background.png","CaptureObjectButton.png","HandHoldingTheThing.png","ObjectInCenter.png","ComputerFistOnTable.png"};
+    vector<string> TextureNames = {"geisha.png", "open_hand_button.png", "open_hand_computer.png", "fist_button.png","background.png","capture_object_button.png","hand_holding_the_thing.png","object_in_center.png","computer_fist_on_table.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -34,7 +34,7 @@ int main(){
     RenderWindow window(sf::VideoMode(800, 600), "Konpira");
 
     map<string, Texture> TextureMap = TextureLoad();
-    Sprite OpenHandButton(TextureMap.at("OpenHandButton.png")), FistButton(TextureMap.at("FistButton.png")), CaptureButton(TextureMap.at("CaptureObjectButton.png"));
+    Sprite OpenHandButton(TextureMap.at("open_hand_button.png")), FistButton(TextureMap.at("fist_button.png")), CaptureButton(TextureMap.at("capture_object_button.png"));
 
     OpenHandButton.setPosition(static_cast<float>(32), static_cast<float>(5));
     FistButton.setPosition(static_cast<float>(32), static_cast<float>(20));
