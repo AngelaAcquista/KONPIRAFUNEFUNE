@@ -1,14 +1,15 @@
+#pragma once
 #include <SFML/Graphics.hpp>
-#include <map>
-#include <vector>
 #include <iostream>
-using namespace sf;
-using namespace std;
 
-void setText(sf::Text &text, float x, float y){
-	sf::FloatRect textRect = text.getLocalBounds();
+using sf::FloatRect; using sf::Text; using sf::Vector2f; using sf::VideoMode; using sf::Color; using sf::Event; using sf::Vector2i;
+using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow;
+
+
+void setText(Text &text, float x, float y){
+	FloatRect textRect = text.getLocalBounds();
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
-	text.setPosition(sf::Vector2f(x, y));
+	text.setPosition(Vector2f(x, y));
 }
 
 class WelcomeWindow{
@@ -64,7 +65,7 @@ public:
 				if (event.type == Event::MouseButtonPressed){
 					if (Mouse::isButtonPressed(Mouse::Left)){
 						Vector2i mouse_position = Mouse::getPosition(window_);
-						sf::Vector2f mouse_position_f(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y));
+						Vector2f mouse_position_f(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y));
 						// Show video button is clicked
 						if (button1_sprite.getGlobalBounds().contains(mouse_position_f)){
 							window_.close();

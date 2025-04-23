@@ -6,17 +6,9 @@
 #include <fstream>
 #include "WelcomeWindow.hpp"
 
-using std::map;
-using std::string;
-using std::vector;
-using std::cerr;
-using std::endl;
-using sf::Texture;
-using std::ifstream;
-using sf::RenderWindow;
-using std::to_string;
-using sf::Event;
-using sf::Sprite;
+using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
+
+using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite;
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
