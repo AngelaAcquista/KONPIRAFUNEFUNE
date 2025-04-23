@@ -7,8 +7,7 @@
 #include "WelcomeWindow.hpp"
 
 using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
-
-using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite;
+using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode;
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
@@ -33,14 +32,21 @@ int main(){
 
 	if (welcome_window.GameStart){
 		// Start the game
-		RenderWindow window(sf::VideoMode(800, 600), "Konpira");
+		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
 		map<string, Texture> TextureMap = TextureLoad();
-		Sprite OpenHandButton(TextureMap.at("open_hand_button.png")), FistButton(TextureMap.at("fist_button.png")), CaptureButton(TextureMap.at("capture_object_button.png"));
-	
-		OpenHandButton.setPosition(static_cast<float>(32), static_cast<float>(5));
-		FistButton.setPosition(static_cast<float>(32), static_cast<float>(20));
-		CaptureButton.setPosition(static_cast<float>(32), static_cast<float>(40));
+		Sprite Geisha(TextureMap.at("geisha.jpg")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("open_hand_button.png")), FistButton(TextureMap.at("fist_button.png")), CaptureButton(TextureMap.at("capture_object_button.png"));
+
+		OpenHandButton.setScale(0.4f, 0.4f);
+		CaptureButton.setScale(0.4f, 0.4f);
+		Geisha.setScale(0.8f, 0.85f);
+		Background.setScale(1.6, 1.6);
+
+		OpenHandButton.setPosition(static_cast<float>(700), static_cast<float>(900));
+		FistButton.setPosition(static_cast<float>(70), static_cast<float>(900));
+		CaptureButton.setPosition(static_cast<float>(1300), static_cast<float>(900));
+		Geisha.setPosition(static_cast<float>(600), static_cast<float>(200));
+		Background.setOrigin(0, 220.f);
 	
 		while(window.isOpen()){
 			Event event;
@@ -52,7 +58,9 @@ int main(){
 			}
 	
 			window.clear();
-	
+
+			window.draw(Background);
+			window.draw(Geisha);
 			window.draw(OpenHandButton);
 			window.draw(FistButton);
 			window.draw(CaptureButton);
