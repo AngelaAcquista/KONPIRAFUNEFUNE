@@ -39,13 +39,12 @@ int main(){
 
 		OpenHandButton.setScale(0.4f, 0.4f);
 		CaptureButton.setScale(0.4f, 0.4f);
-		Geisha.setScale(0.8f, 0.85f);
 		Background.setScale(1.6, 1.6);
 
 		OpenHandButton.setPosition(static_cast<float>(700), static_cast<float>(900));
 		FistButton.setPosition(static_cast<float>(70), static_cast<float>(900));
 		CaptureButton.setPosition(static_cast<float>(1300), static_cast<float>(900));
-		Geisha.setPosition(static_cast<float>(600), static_cast<float>(200));
+		Geisha.setPosition(static_cast<float>(600), static_cast<float>(250));
 		Background.setOrigin(0, 220.f);
 	
 		while(window.isOpen()){
