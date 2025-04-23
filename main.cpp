@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "WelcomeWindow.hpp"
 
 using std::map;
 using std::string;
@@ -31,31 +32,42 @@ map<string, Texture> TextureLoad(){
 }
 
 int main(){
-    RenderWindow window(sf::VideoMode(800, 600), "Konpira");
+	WelcomeWindow welcome_window;
+	welcome_window.Run();
+	
+	if (welcome_window.ShowVideo){
+		// Play the demo video
+	}
 
-    map<string, Texture> TextureMap = TextureLoad();
-    Sprite OpenHandButton(TextureMap.at("open_hand_button.png")), FistButton(TextureMap.at("fist_button.png")), CaptureButton(TextureMap.at("capture_object_button.png"));
+	if (welcome_window.GameStart){
+		// Start the game
+		RenderWindow window(sf::VideoMode(800, 600), "Konpira");
 
-    OpenHandButton.setPosition(static_cast<float>(32), static_cast<float>(5));
-    FistButton.setPosition(static_cast<float>(32), static_cast<float>(20));
-    CaptureButton.setPosition(static_cast<float>(32), static_cast<float>(40));
+		map<string, Texture> TextureMap = TextureLoad();
+		Sprite OpenHandButton(TextureMap.at("open_hand_button.png")), FistButton(TextureMap.at("fist_button.png")), CaptureButton(TextureMap.at("capture_object_button.png"));
+	
+		OpenHandButton.setPosition(static_cast<float>(32), static_cast<float>(5));
+		FistButton.setPosition(static_cast<float>(32), static_cast<float>(20));
+		CaptureButton.setPosition(static_cast<float>(32), static_cast<float>(40));
+	
+		while(window.isOpen()){
+			Event event;
+			while(window.pollEvent(event)){
+				if(event.type == Event::Closed){
+					window.close();
+				}
+	
+			}
+	
+			window.clear();
+	
+			window.draw(OpenHandButton);
+			window.draw(FistButton);
+			window.draw(CaptureButton);
+	
+			window.display();
+		}
+	}
 
-    while(window.isOpen()){
-        Event event;
-        while(window.pollEvent(event)){
-            if(event.type == Event::Closed){
-                window.close();
-            }
-
-        }
-
-        window.clear();
-
-        window.draw(OpenHandButton);
-        window.draw(FistButton);
-        window.draw(CaptureButton);
-
-        window.display();
-    }
     return 0;
 }
