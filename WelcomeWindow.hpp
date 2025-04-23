@@ -2,9 +2,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+using std::istreambuf_iterator; using std::string; using std::vector; using std::ifstream; using std::cerr; using std::endl;
 using sf::FloatRect; using sf::Text; using sf::Vector2f; using sf::VideoMode; using sf::Color; using sf::Event; using sf::Vector2i;
 using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow;
 
+
+void ReaderFile(const string& filename, vector<unsigned char>& FontData){
+	ifstream file;
+
+	file.open("files/" + filename, std::ios::binary);
+
+	if(!file.is_open()){
+		cerr<<"Failed to load: files/"<<filename<<endl;
+		return;
+	}
+	FontData.assign((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+	file.close();
+}
 
 void setText(Text &text, float x, float y){
 	FloatRect textRect = text.getLocalBounds();
@@ -41,13 +55,20 @@ public:
 		button2_sprite.setPosition(850.f, 650.f);
 
 		// Set up the texts
-		font.loadFromFile("files/MorganChalk-L3aJy.ttf");
+		vector<unsigned char> FontData;
+
+		ReaderFile("MorganChalk-L3aJy.ttf", FontData);
+
+		if(!font.loadFromMemory(FontData.data(), FontData.size())){
+			cerr<<"Failed to open font."<<endl;
+		}
+		title_text.setFont(font);
 		title_text.setString("Konpira Fune Fune!");
 		title_text.setCharacterSize(56);
 		title_text.setStyle(Text::Bold);
 		title_text.setFillColor(Color::Black);
-		setText(title_text, 0.f, 0.f);
-
+		setText(title_text, 800.0f, 320.0f);
+		title_text.setScale(2.4, 1.8);
 		ShowVideo = false;
 		GameStart = false;
 	}
@@ -86,7 +107,7 @@ public:
 			window_.draw(button1_sprite);
 			window_.draw(button2_sprite);
 
-			// Draw the texts
+			//Draw text
 			window_.draw(title_text);
 
 			window_.display();
