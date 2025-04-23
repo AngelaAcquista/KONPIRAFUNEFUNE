@@ -7,7 +7,28 @@
 #include "WelcomeWindow.hpp"
 
 using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
-using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode;
+using std::istreambuf_iterator;
+using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode; using sf::Font; using sf::Text;
+
+void FileReader(const string& filename, vector<unsigned char>& FontData){
+	ifstream file;
+
+	file.open("files/" + filename, std::ios::binary);
+
+	if(!file.is_open()){
+		cerr<<"Failed to load: files/"<<filename<<endl;
+		return;
+	}
+	FontData.assign((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+	file.close();
+}
+
+void SetText(Text& text, float x, float y){
+	FloatRect TextRect = text.getLocalBounds();
+
+	text.setOrigin(TextRect.left + TextRect.width/2.0f,TextRect.top + TextRect.height/2.0f);
+	text.setPosition(Vector2f(x, y));
+}
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
@@ -23,9 +44,41 @@ map<string, Texture> TextureLoad(){
 }
 
 int main(){
+	vector<unsigned char> FontData;
+	Font font;
+
 	WelcomeWindow welcome_window;
 	welcome_window.Run();
-	
+
+	FileReader("MorganChalk-L3aJy.ttf", FontData);
+
+	if(!font.loadFromMemory(FontData.data(), FontData.size())){
+		cerr<<"Failed to open font."<<endl;
+	}
+	Text CaptureText("", font);
+	Text CloseText("", font);
+	Text OpenText("", font);
+
+	CaptureText.setString("Capture");
+	CloseText.setString("Close");
+	OpenText.setString("Open");
+
+	CaptureText.setCharacterSize(24);
+	CloseText.setCharacterSize(24);
+	OpenText.setCharacterSize(24);
+
+	CaptureText.setFillColor(Color::Black);
+	CloseText.setFillColor(Color::Black);
+	OpenText.setFillColor(Color::Black);
+
+	SetText(CaptureText, 1443.0f, 1030.0f);
+	SetText(CloseText, 210.0f, 1030.0f);
+	SetText(OpenText, 840.0f, 1030.0f);
+
+	CaptureText.setScale(1.5, 1.8);
+	CloseText.setScale(2.4, 1.5);
+	OpenText.setScale(2.4, 1.5);
+
 	if (welcome_window.ShowVideo){
 		// Play the demo video
 	}
@@ -35,6 +88,7 @@ int main(){
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
 		map<string, Texture> TextureMap = TextureLoad();
+
 		Sprite Geisha(TextureMap.at("geisha.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
 		Background.setScale(1.6, 1.6);
@@ -42,10 +96,10 @@ int main(){
 		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
 
-		OpenHandButton.setPosition(static_cast<float>(700), static_cast<float>(900));
-		FistButton.setPosition(static_cast<float>(70), static_cast<float>(900));
-		CaptureButton.setPosition(static_cast<float>(1300), static_cast<float>(900));
-		Geisha.setPosition(static_cast<float>(600), static_cast<float>(250));
+		OpenHandButton.setPosition(700.0f, 900.0f);
+		FistButton.setPosition(70.0f, 900.0f);
+		CaptureButton.setPosition(1300.0f, 900.0f);
+		Geisha.setPosition(600.0f, 250.0f);
 		Background.setOrigin(0, 220.f);
 	
 		while(window.isOpen()){
@@ -62,8 +116,11 @@ int main(){
 			window.draw(Background);
 			window.draw(Geisha);
 			window.draw(OpenHandButton);
+			window.draw(OpenText);
 			window.draw(FistButton);
+			window.draw(CloseText);
 			window.draw(CaptureButton);
+			window.draw(CaptureText);
 	
 			window.display();
 		}
