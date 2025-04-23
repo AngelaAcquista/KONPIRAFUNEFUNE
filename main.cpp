@@ -11,7 +11,7 @@ using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; us
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
-    vector<string> TextureNames = {"welcome_button.png","geisha.png", "open_hand_button.png", "open_hand_computer.png","background.png","hand_holding_the_thing.png","object_in_center.png","computer_fist_on_table.png"};
+    vector<string> TextureNames = {"welcome_button.png","geisha.png", "open_hand_computer.png","background.png","hand_holding_the_thing.png","object_in_center.png","computer_fist_on_table.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -41,7 +41,6 @@ int main(){
 		OpenHandButton.setScale(0.5, 0.5);
 		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
-		CaptureText.setScale(0.49, 0.5);
 
 		OpenHandButton.setPosition(static_cast<float>(700), static_cast<float>(900));
 		FistButton.setPosition(static_cast<float>(70), static_cast<float>(900));
