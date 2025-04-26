@@ -8,7 +8,7 @@
 
 using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
 using std::istreambuf_iterator;
-using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode; using sf::Font; using sf::Text;
+using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode; using sf::Font; using sf::Text; using sf::Mouse;
 
 void FileReader(const string& filename, vector<unsigned char>& FontData){
 	ifstream file;
@@ -46,6 +46,7 @@ map<string, Texture> TextureLoad(){
 int main(){
 	vector<unsigned char> FontData;
 	Font font;
+	bool GameOver = false;
 
 	WelcomeWindow welcome_window;
 	welcome_window.Run();
@@ -58,55 +59,101 @@ int main(){
 	Text CaptureText("", font);
 	Text CloseText("", font);
 	Text OpenText("", font);
+	Text TryAgainText("", font);
+	Text LostText("", font);
+	Text WonText("", font);
+	Text WelcomeText("", font);
 
 	CaptureText.setString("Capture");
 	CloseText.setString("Close");
 	OpenText.setString("Open");
+	LostText.setString("You Lost!");
+	WonText.setString("You Won!");
+	TryAgainText.setString("Try Again?");
+	WelcomeText.setString("Back");
 
 	CaptureText.setCharacterSize(24);
 	CloseText.setCharacterSize(24);
 	OpenText.setCharacterSize(24);
+	LostText.setCharacterSize(24);
+	WonText.setCharacterSize(24);
+	TryAgainText.setCharacterSize(24);
+	WelcomeText.setCharacterSize(24);
 
 	CaptureText.setFillColor(Color::Black);
 	CloseText.setFillColor(Color::Black);
 	OpenText.setFillColor(Color::Black);
+	LostText.setFillColor(Color::Black);
+	WonText.setFillColor(Color::Black);
+	TryAgainText.setFillColor(Color::Black);
+	WelcomeText.setFillColor(Color::Black);
 
 	SetText(CaptureText, 1443.0f, 1030.0f);
 	SetText(CloseText, 210.0f, 1030.0f);
 	SetText(OpenText, 840.0f, 1030.0f);
+	SetText(LostText, 800.0f, 300.0f);
+	SetText(WonText, 800.0f, 300.0f);
+	SetText(TryAgainText, 840.0f, 700.0f);
+	SetText(WelcomeText, 150.0f, 135.0f);
 
 	CaptureText.setScale(1.5, 1.8);
 	CloseText.setScale(2.4, 1.5);
 	OpenText.setScale(2.4, 1.5);
+	LostText.setScale(10.0, 10.0);
+	WonText.setScale(10.0, 10.0);
+	TryAgainText.setScale(2.4, 1.5);
+	WelcomeText.setScale(2.4, 1.5);
 
-	if (welcome_window.ShowVideo){
+	if(welcome_window.ShowVideo){
 		// Play the demo video
 	}
 
-	if (welcome_window.GameStart){
+	if(welcome_window.GameStart){
 		// Start the game
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
 		map<string, Texture> TextureMap = TextureLoad();
 
-		Sprite Geisha(TextureMap.at("geisha.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
+		Sprite WelcomeButton(TextureMap.at("welcome_button.png")), Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
 		Background.setScale(1.6, 1.6);
 		OpenHandButton.setScale(0.5, 0.5);
 		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
+		TryAgainButton.setScale(0.7, 0.7);
+		WelcomeButton.setScale(0.5, 0.5);
 
 		OpenHandButton.setPosition(700.0f, 900.0f);
+		WelcomeButton.setPosition(5.0f, 5.0f);
 		FistButton.setPosition(70.0f, 900.0f);
+		TryAgainButton.setPosition(650.0f, 500.0f);
 		CaptureButton.setPosition(1300.0f, 900.0f);
 		Geisha.setPosition(600.0f, 250.0f);
 		Background.setOrigin(0, 220.f);
 	
 		while(window.isOpen()){
 			Event event;
+
 			while(window.pollEvent(event)){
-				if(event.type == Event::Closed){
-					window.close();
+				if(event.type == Event::Closed) window.close();
+				if(event.type == Event::MouseButtonPressed) {
+					Vector2i MousePos = Mouse::getPosition(window);
+
+					if(!GameOver && OpenHandButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+
+					}
+					if(!GameOver && FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+
+					}
+					if(!GameOver && CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+
+					}
+					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+						GameOver = false;
+					}
+					if(WelcomeButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+
+					}
 				}
 	
 			}
@@ -121,7 +168,13 @@ int main(){
 			window.draw(CloseText);
 			window.draw(CaptureButton);
 			window.draw(CaptureText);
-	
+			//window.draw(LostText);
+			//window.draw(WonText);
+			window.draw(WelcomeButton);
+			window.draw(WelcomeText);
+			//window.draw(TryAgainButton);
+			//window.draw(TryAgainText);
+
 			window.display();
 		}
 	}
