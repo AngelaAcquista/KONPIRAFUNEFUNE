@@ -5,8 +5,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <map>
 
-using std::istreambuf_iterator; using std::string; using std::vector; using std::ifstream; using std::cerr; using std::endl;
+using std::istreambuf_iterator; using std::string; using std::vector; using std::ifstream; using std::cerr; using std::endl; using std::map;
 using sf::FloatRect; using sf::Text; using sf::Vector2f; using sf::VideoMode; using sf::Color; using sf::Event; using sf::Vector2i;
 using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow; using sf::SoundBuffer; using sf::Sound;
 
@@ -28,6 +29,16 @@ void setText(Text &text, float x, float y){
 
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
 	text.setPosition(Vector2f(x, y));
+}
+void TextureLoad(map<string, Texture>& TextureMap){
+	vector<string> TextureNames = {"welcome_title.png",  "welcome_button.png","background.png"};
+
+	for(const string& name : TextureNames){
+		Texture texture;
+
+		if(texture.loadFromFile("files/" + name)) TextureMap[name] = texture;
+		else cerr<<"Failed to open files/" + name<<endl;
+	}
 }
 
 class WelcomeWindow{
