@@ -94,7 +94,7 @@ int main(){
 	SetText(OpenText, 840.0f, 1030.0f);
 	SetText(LostText, 800.0f, 300.0f);
 	SetText(WonText, 800.0f, 300.0f);
-	SetText(TryAgainText, 840.0f, 700.0f);
+	SetText(TryAgainText, 850.0f, 710.0f);
 	SetText(WelcomeText, 150.0f, 135.0f);
 
 	CaptureText.setScale(1.5, 1.8);
@@ -121,13 +121,13 @@ int main(){
 		OpenHandButton.setScale(0.5, 0.5);
 		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
-		TryAgainButton.setScale(0.7, 0.7);
+		TryAgainButton.setScale(0.9, 0.9);
 		WelcomeButton.setScale(0.5, 0.5);
 
 		OpenHandButton.setPosition(700.0f, 900.0f);
 		WelcomeButton.setPosition(5.0f, 5.0f);
 		FistButton.setPosition(70.0f, 900.0f);
-		TryAgainButton.setPosition(650.0f, 500.0f);
+		TryAgainButton.setPosition(600.0f, 480.0f);
 		CaptureButton.setPosition(1300.0f, 900.0f);
 		Geisha.setPosition(600.0f, 250.0f);
 		Background.setOrigin(0, 220.f);
