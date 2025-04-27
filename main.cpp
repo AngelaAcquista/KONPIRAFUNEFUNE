@@ -65,7 +65,7 @@ int main(){
 		mt19937 gen(rand());
 		int count = 0, computermove = 0;
 		bool GameOver, Won, Captured, ComputerCaptured, PlayerTurn = false;
-		uniform_int_distribution<> move(0, 2);
+		uniform_int_distribution<> move(0, 10);
 		SoundBuffer buffer;
 		Sound sound;
 		map<string, Texture> TextureMap;
@@ -157,7 +157,7 @@ int main(){
 				if(!PlayerTurn){
 					PlayerTurn = true;
 
-					if(!Captured && count % 5 == 0) ComputerCaptured = true;
+					if(!Captured && count % 10 == 0) ComputerCaptured = true;
 					else{
 						Captured = false;
 						computermove = move(gen);
