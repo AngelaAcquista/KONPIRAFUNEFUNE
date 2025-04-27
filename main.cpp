@@ -11,7 +11,7 @@
 using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
 using std::istreambuf_iterator; using std::random_device; using std::uniform_int_distribution; using std::mt19937;
 using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode; using sf::Font; using sf::Text; using sf::Mouse;
-using sf::SoundBuffer; using sf::Sound;
+using sf::SoundBuffer; using sf::Sound; using sf::RenderTexture;
 
 void FileReader(const string& filename, vector<unsigned char>& FontData){
 	ifstream file;
@@ -56,6 +56,11 @@ int main(){
 		// Start the game
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
+		RenderTexture staticLayerTexture;
+
+		if(!staticLayerTexture.create(1600, 1200)) cerr << "Failed to create static layer texture" << endl;
+
+		staticLayerTexture.clear(Color::Transparent);
 		random_device rand;
 		mt19937 gen(rand());
 		int count = 0, computermove = 0;
@@ -134,6 +139,13 @@ int main(){
 		Background.setOrigin(0, 220.f);
 		GameOverSign.setPosition(200.f, -500.f);
 
+		staticLayerTexture.draw(Background);
+		staticLayerTexture.draw(Geisha);
+		staticLayerTexture.draw(OpenHandButton);
+		staticLayerTexture.draw(FistButton);
+		staticLayerTexture.display();
+		Sprite staticLayer(staticLayerTexture.getTexture());
+
 		while(window.isOpen()){
 			Event event;
 
@@ -192,12 +204,9 @@ int main(){
 				}
 			}
 			window.clear();
+			window.draw(staticLayer);
 
-			window.draw(Background);
-			window.draw(Geisha);
-			window.draw(OpenHandButton);
 			window.draw(OpenText);
-			window.draw(FistButton);
 			window.draw(CloseText);
 
 			if(!ComputerCaptured && !Captured){
