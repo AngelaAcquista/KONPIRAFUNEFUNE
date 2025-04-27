@@ -75,25 +75,25 @@ public:
 
 	void Run(){
 		// Window loop
-		while (window_.isOpen()){
+		while(window_.isOpen()){
 			// Handle event
 			Event event;
-			while (window_.pollEvent(event)){
-				if (event.type == Event::Closed){
+			while(window_.pollEvent(event)){
+				if(event.type == Event::Closed){
 					window_.close();
 				}
 				
-				if (event.type == Event::MouseButtonPressed){
-					if (Mouse::isButtonPressed(Mouse::Left)){
+				if(event.type == Event::MouseButtonPressed){
+					if(Mouse::isButtonPressed(Mouse::Left)){
 						Vector2i mouse_position = Mouse::getPosition(window_);
 						Vector2f mouse_position_f(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y));
 						// Show video button is clicked
-						if (button1_sprite.getGlobalBounds().contains(mouse_position_f)){
+						if(button1_sprite.getGlobalBounds().contains(mouse_position_f)){
 							window_.close();
 							ShowVideo = true;
 						} 
 						// Game start button is clicked
-						else if (button2_sprite.getGlobalBounds().contains(mouse_position_f)){
+						else if(button2_sprite.getGlobalBounds().contains(mouse_position_f)){
 							window_.close();
 							GameStart = true;
 						}

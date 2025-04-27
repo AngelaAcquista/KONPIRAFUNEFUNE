@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
+#include <random>
 #include <map>
 #include <string>
 #include <vector>
@@ -8,7 +8,7 @@
 #include "WelcomeWindow.hpp"
 
 using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
-using std::istreambuf_iterator;
+using std::istreambuf_iterator; using std::random_device; using std::uniform_int_distribution; using std::mt19937;
 using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode; using sf::Font; using sf::Text; using sf::Mouse;
 
 void FileReader(const string& filename, vector<unsigned char>& FontData){
@@ -45,9 +45,12 @@ map<string, Texture> TextureLoad(){
 }
 
 int main(){
+	random_device rand;
+	mt19937 gen(rand());
+	uniform_int_distribution<> move(0, 2);
 	vector<unsigned char> FontData;
 	Font font;
-	bool GameOver = false;
+	bool GameOver, Won, Captured, ComputerCaptured, PlayerWent;
 
 	WelcomeWindow welcome_window;
 	welcome_window.Run();
@@ -57,13 +60,7 @@ int main(){
 	if(!font.loadFromMemory(FontData.data(), FontData.size())){
 		cerr<<"Failed to open font."<<endl;
 	}
-	Text CaptureText("", font);
-	Text CloseText("", font);
-	Text OpenText("", font);
-	Text TryAgainText("", font);
-	Text LostText("", font);
-	Text WonText("", font);
-	Text WelcomeText("", font);
+	Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
 
 	CaptureText.setString("Capture");
 	CloseText.setString("Close");
@@ -71,7 +68,6 @@ int main(){
 	LostText.setString("You Lost!");
 	WonText.setString("You Won!");
 	TryAgainText.setString("Try Again?");
-	WelcomeText.setString("Back");
 
 	CaptureText.setCharacterSize(24);
 	CloseText.setCharacterSize(24);
@@ -79,7 +75,6 @@ int main(){
 	LostText.setCharacterSize(24);
 	WonText.setCharacterSize(24);
 	TryAgainText.setCharacterSize(24);
-	WelcomeText.setCharacterSize(24);
 
 	CaptureText.setFillColor(Color::Black);
 	CloseText.setFillColor(Color::Black);
@@ -87,7 +82,6 @@ int main(){
 	LostText.setFillColor(Color::Black);
 	WonText.setFillColor(Color::Black);
 	TryAgainText.setFillColor(Color::Black);
-	WelcomeText.setFillColor(Color::Black);
 
 	SetText(CaptureText, 1443.0f, 1030.0f);
 	SetText(CloseText, 210.0f, 1030.0f);
@@ -95,7 +89,6 @@ int main(){
 	SetText(LostText, 800.0f, 300.0f);
 	SetText(WonText, 800.0f, 300.0f);
 	SetText(TryAgainText, 850.0f, 710.0f);
-	SetText(WelcomeText, 150.0f, 135.0f);
 
 	CaptureText.setScale(1.5, 1.8);
 	CloseText.setScale(2.4, 1.5);
@@ -103,29 +96,25 @@ int main(){
 	LostText.setScale(10.0, 10.0);
 	WonText.setScale(10.0, 10.0);
 	TryAgainText.setScale(2.4, 1.5);
-	WelcomeText.setScale(2.4, 1.5);
 
 	if(welcome_window.ShowVideo){
 		// Play the demo video
 	}
-
 	if(welcome_window.GameStart){
 		// Start the game
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
 		map<string, Texture> TextureMap = TextureLoad();
 
-		Sprite WelcomeButton(TextureMap.at("welcome_button.png")), Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
+		Sprite Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
 		Background.setScale(1.6, 1.6);
 		OpenHandButton.setScale(0.5, 0.5);
 		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
 		TryAgainButton.setScale(0.9, 0.9);
-		WelcomeButton.setScale(0.5, 0.5);
 
 		OpenHandButton.setPosition(700.0f, 900.0f);
-		WelcomeButton.setPosition(5.0f, 5.0f);
 		FistButton.setPosition(70.0f, 900.0f);
 		TryAgainButton.setPosition(600.0f, 480.0f);
 		CaptureButton.setPosition(1300.0f, 900.0f);
@@ -137,23 +126,57 @@ int main(){
 
 			while(window.pollEvent(event)){
 				if(event.type == Event::Closed) window.close();
+				int computermove;
+				if(PlayerWent){
+					PlayerWent = false;
+					if(Captured) while(computermove == 2) computermove = move(gen);
+
+					if(computermove == 2) ComputerCaptured = true; //capture
+
+					if(computermove == 0){
+						//open
+						if(Captured){
+							GameOver = true;
+							Won = true;
+						}
+					}
+					if(computermove == 1){
+						//close
+						if(!Captured){
+							GameOver = true;
+							Won = true;
+						}
+						Captured = false;
+					}
+				}
 				if(event.type == Event::MouseButtonPressed) {
 					Vector2i MousePos = Mouse::getPosition(window);
 
 					if(!GameOver && OpenHandButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-
+						if(ComputerCaptured){
+							GameOver = true;
+							Won = false;
+						}
+						PlayerWent = true;
 					}
 					if(!GameOver && FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-
+						if(!ComputerCaptured){
+							GameOver = true;
+							Won = false;
+						}
+						ComputerCaptured = false;
+						PlayerWent = true;
 					}
 					if(!GameOver && CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-
+						ComputerCaptured = true;
+						PlayerWent = true;
 					}
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 						GameOver = false;
-					}
-					if(WelcomeButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-
+						Won = false;
+						ComputerCaptured = false;
+						PlayerWent = false;
+						Captured = false;
 					}
 				}
 	
@@ -166,18 +189,19 @@ int main(){
 			window.draw(OpenText);
 			window.draw(FistButton);
 			window.draw(CloseText);
-			window.draw(CaptureButton);
-			window.draw(CaptureText);
-			//window.draw(LostText);
-			//window.draw(WonText);
-			window.draw(WelcomeButton);
-			window.draw(WelcomeText);
-			//window.draw(TryAgainButton);
-			//window.draw(TryAgainText);
 
+			if(!Captured){
+				window.draw(CaptureButton);
+				window.draw(CaptureText);
+			}
+			if(GameOver){
+				if(Won) window.draw(WonText);
+				else window.draw(LostText);
+				window.draw(TryAgainButton);
+				window.draw(TryAgainText);
+			}
 			window.display();
 		}
 	}
-
     return 0;
 }
