@@ -65,12 +65,9 @@ int main(){
 
 	if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
-	//if (!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.mp3")) {
-		// Error loading the sound file
-		//return -1;
-	//}
-	//sound.setBuffer(buffer);
-	//sound.play();
+	if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
+
+	sound.setBuffer(buffer);
 	Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
 
 	CaptureText.setString("Capture");
@@ -113,6 +110,7 @@ int main(){
 	}
 	if(welcome_window.GameStart){
 		// Start the game
+		sound.play();
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
 		map<string, Texture> TextureMap = TextureLoad();
@@ -143,7 +141,9 @@ int main(){
 				if(event.type == Event::Closed) window.close();
 
 				int computermove;
-
+				if(sound.getStatus() == Sound::Stopped) {
+					sound.play();
+				}
 				if(!PlayerTurn){
 					PlayerTurn = true;
 
@@ -188,6 +188,7 @@ int main(){
 						GameOver = false;
 						Won = false;
 						PlayerTurn = false;
+						sound.play();
 					}
 				}
 			}

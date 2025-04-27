@@ -74,8 +74,10 @@ CMakeFiles/FINAL.dir/main.cpp.obj: C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_iterator_base_types.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_map.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h \
+  C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multiset.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_numeric.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_pair.h \
+  C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_set.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tree.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
@@ -131,6 +133,7 @@ CMakeFiles/FINAL.dir/main.cpp.obj: C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
+  C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/set \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdexcept \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdlib.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/streambuf \
@@ -219,8 +222,21 @@ CMakeFiles/FINAL.dir/main.cpp.obj: C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wchar.h \
   C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio.hpp \
   C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/AlResource.hpp \
   C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Export.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/InputSoundFile.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Listener.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Music.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/OutputSoundFile.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Sound.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundBuffer.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundBufferRecorder.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileFactory.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileFactory.inl \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileReader.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileWriter.hpp \
+  C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundRecorder.hpp \
   C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundSource.hpp \
   C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundStream.hpp \
   C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Config.hpp \
@@ -368,6 +384,8 @@ C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_6
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_classes.h:
 
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileFactory.hpp:
+
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/sys/types.h:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype:
@@ -400,6 +418,8 @@ C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/in
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h:
 
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundBuffer.hpp:
+
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/legendre_function.tcc:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/invoke.h:
@@ -431,6 +451,10 @@ C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_6
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/limits.h:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileFactory.inl:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Listener.hpp:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/localefwd.h:
 
@@ -506,11 +530,15 @@ C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_6
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h:
 
+C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multiset.h:
+
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/System/Thread.inl:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_numeric.h:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_pair.h:
+
+C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_set.h:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h:
 
@@ -628,6 +656,10 @@ C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/in
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h:
 
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Graphics/RenderTexture.hpp:
+
+C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/set:
+
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/System/Utf.hpp:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdlib.h:
@@ -667,6 +699,8 @@ C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_6
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/OutputSoundFile.hpp:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h:
 
@@ -730,6 +764,8 @@ C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mi
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/corecrt.h:
 
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundRecorder.hpp:
+
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h:
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/corecrt_wstdlib.h:
@@ -780,11 +816,25 @@ C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mi
 
 C:/Users/acqui/AppData/Local/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wctype.h:
 
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio.hpp:
+
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/System/ThreadLocal.hpp:
 
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Graphics/Font.hpp:
 
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Export.hpp:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/InputSoundFile.hpp:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Music.hpp:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/Sound.hpp:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundBufferRecorder.hpp:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileReader.hpp:
+
+C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundFileWriter.hpp:
 
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Audio/SoundStream.hpp:
 
@@ -821,8 +871,6 @@ C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/in
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Graphics/RectangleShape.hpp:
 
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Graphics/RenderTarget.hpp:
-
-C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Graphics/RenderTexture.hpp:
 
 C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include/SFML/Graphics/RenderWindow.hpp:
 
