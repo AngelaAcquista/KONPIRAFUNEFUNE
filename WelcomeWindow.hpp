@@ -30,16 +30,6 @@ void setText(Text &text, float x, float y){
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
 	text.setPosition(Vector2f(x, y));
 }
-void TextureLoader(map<string, Texture>& TextureMap){
-	vector<string> TextureNames = {"welcome_title.png",  "welcome_button.png","background.png"};
-
-	for(const string& name : TextureNames){
-		Texture texture;
-
-		if(texture.loadFromFile("files/" + name)) TextureMap[name] = texture;
-		else cerr<<"Failed to open files/" + name<<endl;
-	}
-}
 
 class WelcomeWindow{
 public:
@@ -114,7 +104,7 @@ public:
 							sound.stop();
 							window_.close();
 							ShowVideo = true;
-						} 
+						}
 						// Game start button is clicked
 						else if(button2_sprite.getGlobalBounds().contains(mouse_position_f)){
 							sound.stop();
