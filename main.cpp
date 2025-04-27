@@ -51,6 +51,7 @@ int main(){
 	uniform_int_distribution<> move(0, 2);
 	vector<unsigned char> FontData;
 	Font font;
+	int count = 0;
 	bool GameOver, Won, Captured, ComputerCaptured, PlayerTurn = false;
 
 	WelcomeWindow welcome_window;
@@ -135,27 +136,15 @@ int main(){
 
 				if(!PlayerTurn){
 					PlayerTurn = true;
-
-					if(Captured) while(computermove == 2) computermove = move(gen);
-
-					if(computermove == 2) ComputerCaptured = true; //capture
-
-					if(computermove == 0){
-						//open
-						if(Captured){
+					if(!Captured && count % 3 == 0) ComputerCaptured = true;
+					else{
+						computermove = move(gen);
+						if(computermove == 0){ //fist or close option
 							GameOver = true;
 							Won = true;
 						}
-						Captured = false;
 					}
-					if(computermove == 1){
-						//close
-						if(!Captured){
-							GameOver = true;
-							Won = true;
-						}
-						Captured = false;
-					}
+					count++;
 				}
 				if(event.type == Event::MouseButtonPressed){
 					Vector2i MousePos = Mouse::getPosition(window);
@@ -179,6 +168,7 @@ int main(){
 							Captured = true;
 						}
 						PlayerTurn = false;
+						count++;
 					}
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 						GameOver = false;
