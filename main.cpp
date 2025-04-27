@@ -35,7 +35,7 @@ void SetText(Text& text, float x, float y){
 }
 
 void TextureLoad(map<string, Texture>& TextureMap){
-    vector<string> TextureNames = {"capturebutton.png", "openbutton.png", "tablewithoutblock.png", "closebutton.png", "backgroundforgame.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png"};
+    vector<string> TextureNames = {"tryagainbutton.png","capturebutton.png", "openbutton.png", "tablewithoutblock.png", "closebutton.png", "backgroundforgame.png", "welcome_title.png", "tablewithblock.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -76,27 +76,22 @@ int main(){
 
 		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
-		Text TryAgainText("", font), LostText("", font), WonText("", font);
+		Text LostText("", font), WonText("", font);
 
 		LostText.setString("You Lost!");
 		WonText.setString("You Won!");
-		TryAgainText.setString("Try Again?");
 
 		LostText.setCharacterSize(24);
 		WonText.setCharacterSize(24);
-		TryAgainText.setCharacterSize(24);
 
 		LostText.setFillColor(Color::Black);
 		WonText.setFillColor(Color::Black);
-		TryAgainText.setFillColor(Color::Black);
 
 		SetText(LostText, 800.0f, 280.0f);
 		SetText(WonText, 800.0f, 280.0f);
-		SetText(TryAgainText, 850.0f, 710.0f);
 
 		LostText.setScale(10.0, 10.0);
 		WonText.setScale(10.0, 10.0);
-		TryAgainText.setScale(2.4, 1.5);
 
 		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
 
@@ -105,10 +100,9 @@ int main(){
 
 		TextureLoad(TextureMap);
 
-		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("backgroundforgame.png")), OpenHandButton(TextureMap.at("openbutton.png")), FistButton(TextureMap.at("closebutton.png")), CaptureButton(TextureMap.at("capturebutton.png"));
+		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), TryAgainButton(TextureMap.at("tryagainbutton.png")), Background(TextureMap.at("backgroundforgame.png")), OpenHandButton(TextureMap.at("openbutton.png")), FistButton(TextureMap.at("closebutton.png")), CaptureButton(TextureMap.at("capturebutton.png"));
 
 		Background.setScale(1.1, 1.1);
-		TryAgainButton.setScale(0.9, 0.9);
 		GameOverSign.setScale(0.6, 0.8);
 
 		OpenHandButton.setPosition(700.0f, 915.0f);
@@ -198,7 +192,6 @@ int main(){
 				else window.draw(LostText);
 
 				window.draw(TryAgainButton);
-				window.draw(TryAgainText);
 			}
 			window.display();
 		}
