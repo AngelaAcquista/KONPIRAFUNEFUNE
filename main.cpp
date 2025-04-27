@@ -34,8 +34,7 @@ void SetText(Text& text, float x, float y){
 	text.setPosition(Vector2f(x, y));
 }
 
-map<string, Texture> TextureLoad(){
-    map<string, Texture> TextureMap;
+void TextureLoad(map<string, Texture>& TextureMap){
     vector<string> TextureNames = {"tablewithoutblock.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png","geisha.png", "open_hand_computer.png","background.png","object_in_center.png","computer_fist_on_table.png"};
 
     for(const string& name : TextureNames){
@@ -44,77 +43,77 @@ map<string, Texture> TextureLoad(){
         if(texture.loadFromFile("files/" + name)) TextureMap[name] = texture;
         else cerr<<"Failed to open files/" + name<<endl;
     }
-    return TextureMap;
 }
 
 int main(){
-	random_device rand;
-	mt19937 gen(rand());
-	uniform_int_distribution<> move(0, 2);
-	vector<unsigned char> FontData;
-	Font font;
-	SoundBuffer buffer;
-	Sound sound;
-	int count = 0;
-	bool GameOver, Won, Captured, ComputerCaptured, PlayerTurn = false;
-
 	WelcomeWindow welcome_window;
 	welcome_window.Run();
-
-	FileReader("MorganChalk-L3aJy.ttf", FontData);
-
-	if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
-
-	Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
-
-	CaptureText.setString("Capture");
-	CloseText.setString("Close");
-	OpenText.setString("Open");
-	LostText.setString("You Lost!");
-	WonText.setString("You Won!");
-	TryAgainText.setString("Try Again?");
-
-	CaptureText.setCharacterSize(24);
-	CloseText.setCharacterSize(24);
-	OpenText.setCharacterSize(24);
-	LostText.setCharacterSize(24);
-	WonText.setCharacterSize(24);
-	TryAgainText.setCharacterSize(24);
-
-	CaptureText.setFillColor(Color::Black);
-	CloseText.setFillColor(Color::Black);
-	OpenText.setFillColor(Color::Black);
-	LostText.setFillColor(Color::Black);
-	WonText.setFillColor(Color::Black);
-	TryAgainText.setFillColor(Color::Black);
-
-	SetText(CaptureText, 1443.0f, 1030.0f);
-	SetText(CloseText, 210.0f, 1030.0f);
-	SetText(OpenText, 840.0f, 1030.0f);
-	SetText(LostText, 800.0f, 280.0f);
-	SetText(WonText, 800.0f, 280.0f);
-	SetText(TryAgainText, 850.0f, 710.0f);
-
-	CaptureText.setScale(1.5, 1.8);
-	CloseText.setScale(2.4, 1.5);
-	OpenText.setScale(2.4, 1.5);
-	LostText.setScale(10.0, 10.0);
-	WonText.setScale(10.0, 10.0);
-	TryAgainText.setScale(2.4, 1.5);
 
 	if(welcome_window.ShowVideo){
 		// Play the demo video
 	}
 	if(welcome_window.GameStart){
 		// Start the game
+		RenderWindow window(VideoMode(1600, 1200), "Konpira");
+
+		random_device rand;
+		mt19937 gen(rand());
+		int count = 0, computermove = 0;
+		bool GameOver, Won, Captured, ComputerCaptured, PlayerTurn = false;
+		uniform_int_distribution<> move(0, 2);
+		SoundBuffer buffer;
+		Sound sound;
+		map<string, Texture> TextureMap;
+		vector<unsigned char> FontData;
+		Font font;
+
+		FileReader("MorganChalk-L3aJy.ttf", FontData);
+
+		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
+
+		Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
+
+		CaptureText.setString("Capture");
+		CloseText.setString("Close");
+		OpenText.setString("Open");
+		LostText.setString("You Lost!");
+		WonText.setString("You Won!");
+		TryAgainText.setString("Try Again?");
+
+		CaptureText.setCharacterSize(24);
+		CloseText.setCharacterSize(24);
+		OpenText.setCharacterSize(24);
+		LostText.setCharacterSize(24);
+		WonText.setCharacterSize(24);
+		TryAgainText.setCharacterSize(24);
+
+		CaptureText.setFillColor(Color::Black);
+		CloseText.setFillColor(Color::Black);
+		OpenText.setFillColor(Color::Black);
+		LostText.setFillColor(Color::Black);
+		WonText.setFillColor(Color::Black);
+		TryAgainText.setFillColor(Color::Black);
+
+		SetText(CaptureText, 1443.0f, 1030.0f);
+		SetText(CloseText, 210.0f, 1030.0f);
+		SetText(OpenText, 840.0f, 1030.0f);
+		SetText(LostText, 800.0f, 280.0f);
+		SetText(WonText, 800.0f, 280.0f);
+		SetText(TryAgainText, 850.0f, 710.0f);
+
+		CaptureText.setScale(1.5, 1.8);
+		CloseText.setScale(2.4, 1.5);
+		OpenText.setScale(2.4, 1.5);
+		LostText.setScale(10.0, 10.0);
+		WonText.setScale(10.0, 10.0);
+		TryAgainText.setScale(2.4, 1.5);
+
 		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
 
 		sound.setBuffer(buffer);
 		sound.play();
 
-		RenderWindow window(VideoMode(1600, 1200), "Konpira");
-
-		map<string, Texture> TextureMap = TextureLoad();
+		TextureLoad(TextureMap);
 
 		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
@@ -141,7 +140,6 @@ int main(){
 			while(window.pollEvent(event)){
 				if(event.type == Event::Closed) window.close();
 
-				int computermove;
 				if(sound.getStatus() == Sound::Stopped) {
 					sound.play();
 				}
