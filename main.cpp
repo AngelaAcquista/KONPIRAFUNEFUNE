@@ -143,6 +143,8 @@ int main(){
 		staticLayerTexture.draw(Geisha);
 		staticLayerTexture.draw(OpenHandButton);
 		staticLayerTexture.draw(FistButton);
+		staticLayerTexture.draw(OpenText);
+		staticLayerTexture.draw(CloseText);
 		staticLayerTexture.display();
 		Sprite staticLayer(staticLayerTexture.getTexture());
 
@@ -204,10 +206,8 @@ int main(){
 				}
 			}
 			window.clear();
-			window.draw(staticLayer);
 
-			window.draw(OpenText);
-			window.draw(CloseText);
+			window.draw(staticLayer);
 
 			if(!ComputerCaptured && !Captured){
 				window.draw(CaptureButton);
