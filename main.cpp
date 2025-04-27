@@ -35,7 +35,7 @@ void SetText(Text& text, float x, float y){
 }
 
 void TextureLoad(map<string, Texture>& TextureMap){
-    vector<string> TextureNames = {"tablewithoutblock.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png","geisha.png", "background.png"};
+    vector<string> TextureNames = {"tablewithoutblock.png", "backgroundforgame.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -120,9 +120,9 @@ int main(){
 
 		TextureLoad(TextureMap);
 
-		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
+		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("backgroundforgame.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
-		Background.setScale(1.6, 1.6);
+		Background.setScale(1.1, 1.1);
 		OpenHandButton.setScale(0.5, 0.5);
 		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
@@ -133,14 +133,11 @@ int main(){
 		FistButton.setPosition(70.0f, 900.0f);
 		TryAgainButton.setPosition(600.0f, 480.0f);
 		CaptureButton.setPosition(1300.0f, 900.0f);
-		Geisha.setPosition(600.0f, 250.0f);
-		TableWithBlock.setPosition(780.0f, 630.0f);
-		TableWithoutBlock.setPosition(780.0f, 630.0f);
-		Background.setOrigin(0, 220.f);
+		TableWithBlock.setPosition(830.0f, 680.0f);
+		TableWithoutBlock.setPosition(800.0f, 670.0f);
 		GameOverSign.setPosition(200.f, -500.f);
 
 		staticLayerTexture.draw(Background);
-		staticLayerTexture.draw(Geisha);
 		staticLayerTexture.draw(OpenHandButton);
 		staticLayerTexture.draw(FistButton);
 		staticLayerTexture.draw(OpenText);
