@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -157,7 +158,6 @@ int main(){
 				}
 	
 			}
-	
 			window.clear();
 
 			window.draw(Background);
