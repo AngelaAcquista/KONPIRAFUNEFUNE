@@ -51,7 +51,7 @@ int main(){
 	uniform_int_distribution<> move(0, 2);
 	vector<unsigned char> FontData;
 	Font font;
-	bool GameOver, Won, Captured, ComputerCaptured, PlayerWent;
+	bool GameOver, Won, Captured, ComputerCaptured, PlayerTurn = false;
 
 	WelcomeWindow welcome_window;
 	welcome_window.Run();
@@ -133,8 +133,8 @@ int main(){
 
 				int computermove;
 
-				if(PlayerWent){
-					PlayerWent = false;
+				if(!PlayerTurn){
+					PlayerTurn = true;
 
 					if(Captured) while(computermove == 2) computermove = move(gen);
 
@@ -160,30 +160,30 @@ int main(){
 				if(event.type == Event::MouseButtonPressed) {
 					Vector2i MousePos = Mouse::getPosition(window);
 
-					if(!GameOver && OpenHandButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-						if(ComputerCaptured){
-							GameOver = true;
-							Won = false;
+					if(PlayerTurn && !GameOver) {
+						if(OpenHandButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							if(ComputerCaptured){
+								GameOver = true;
+								Won = false;
+							}
+							ComputerCaptured = false;
 						}
-						ComputerCaptured = false;
-						PlayerWent = true;
-					}
-					if(!GameOver && FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-						if(!ComputerCaptured){
-							GameOver = true;
-							Won = false;
+						if(FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							if(!ComputerCaptured){
+								GameOver = true;
+								Won = false;
+							}
+							ComputerCaptured = false;
 						}
-						ComputerCaptured = false;
-						PlayerWent = true;
-					}
-					if(!GameOver && CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-						Captured = true;
-						PlayerWent = true;
+						if(CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							Captured = true;
+						}
+						PlayerTurn = false;
 					}
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 						GameOver = false;
 						Won = false;
-						PlayerWent = false;
+						PlayerTurn = false;
 					}
 				}
 			}
