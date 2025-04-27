@@ -43,16 +43,16 @@ public:
 
 		staticLayerTexture.clear(Color::Transparent);
 		// Set up the background
-		background_texture.loadFromFile("files/background.png");
+		background_texture.loadFromFile("files/welcomebackgronud.png");
 		background_sprite.setTexture(background_texture);
-		background_sprite.setScale(1.6, 1.6);
-		background_sprite.setOrigin(0, 220.f);
+		background_sprite.setScale(1.1, 1.1);
+		//background_sprite.setOrigin(0, 0);
 
 		// Set up the title
-		title_texture.loadFromFile("files/welcome_title.png");
+		/*title_texture.loadFromFile("files/welcome_title.png");
 		title_sprite.setTexture(title_texture);
 		title_sprite.setScale(0.6, 0.6); //1200*1200
-		title_sprite.setPosition(200.f, -250.f);
+		title_sprite.setPosition(200.f, -250.f);*/
 
 		// Set up the two buttons
 		buttons_texture.loadFromFile("files/welcome_button.png");
@@ -69,14 +69,14 @@ public:
 
 		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
-		title_text.setFont(font);
+		/*title_text.setFont(font);
 		title_text.setString("Konpira Fune Fune!");
 		title_text.setCharacterSize(56);
 		title_text.setStyle(Text::Bold);
 		title_text.setFillColor(Color::Black);
 
 		setText(title_text, 800.0f, 320.0f);
-		title_text.setScale(2.4, 1.8);
+		title_text.setScale(2.4, 1.8);*/
 
 		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
 		sound.setBuffer(buffer);
@@ -86,8 +86,8 @@ public:
 		staticLayerTexture.draw(background_sprite);
 		staticLayerTexture.draw(button2_sprite);
 		staticLayerTexture.draw(button1_sprite);
-		staticLayerTexture.draw(title_sprite);
-		staticLayerTexture.draw(title_text);
+		//staticLayerTexture.draw(title_sprite);
+		//staticLayerTexture.draw(title_text);
 		staticLayerTexture.display();
 		staticLayer.setTexture(staticLayerTexture.getTexture());
 	}
