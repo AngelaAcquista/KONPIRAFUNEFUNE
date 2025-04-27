@@ -35,7 +35,7 @@ void SetText(Text& text, float x, float y){
 }
 
 void TextureLoad(map<string, Texture>& TextureMap){
-    vector<string> TextureNames = {"tablewithoutblock.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png","geisha.png", "open_hand_computer.png","background.png","object_in_center.png","computer_fist_on_table.png"};
+    vector<string> TextureNames = {"tablewithoutblock.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png","geisha.png", "open_hand_computer.png","background.png","object_in_center.png"};
 
     for(const string& name : TextureNames){
         Texture texture;

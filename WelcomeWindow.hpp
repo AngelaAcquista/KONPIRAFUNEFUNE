@@ -30,7 +30,7 @@ void setText(Text &text, float x, float y){
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
 	text.setPosition(Vector2f(x, y));
 }
-void TextureLoad(map<string, Texture>& TextureMap){
+void TextureLoader(map<string, Texture>& TextureMap){
 	vector<string> TextureNames = {"welcome_title.png",  "welcome_button.png","background.png"};
 
 	for(const string& name : TextureNames){
