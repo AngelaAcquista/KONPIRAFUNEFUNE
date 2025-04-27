@@ -1,11 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
 
 using std::istreambuf_iterator; using std::string; using std::vector; using std::ifstream; using std::cerr; using std::endl;
 using sf::FloatRect; using sf::Text; using sf::Vector2f; using sf::VideoMode; using sf::Color; using sf::Event; using sf::Vector2i;
 using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow;
-
 
 void ReaderFile(const string& filename, vector<unsigned char>& FontData){
 	ifstream file;
@@ -22,14 +24,14 @@ void ReaderFile(const string& filename, vector<unsigned char>& FontData){
 
 void setText(Text &text, float x, float y){
 	FloatRect textRect = text.getLocalBounds();
+
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
 	text.setPosition(Vector2f(x, y));
 }
 
 class WelcomeWindow{
 public:
-	bool ShowVideo;
-	bool GameStart;
+	bool ShowVideo, GameStart;
 
 	WelcomeWindow(){
 		window_.create(VideoMode(1600, 1200), "Konpira");
@@ -67,8 +69,10 @@ public:
 		title_text.setCharacterSize(56);
 		title_text.setStyle(Text::Bold);
 		title_text.setFillColor(Color::Black);
+
 		setText(title_text, 800.0f, 320.0f);
 		title_text.setScale(2.4, 1.8);
+
 		ShowVideo = false;
 		GameStart = false;
 	}
@@ -79,9 +83,7 @@ public:
 			// Handle event
 			Event event;
 			while(window_.pollEvent(event)){
-				if(event.type == Event::Closed){
-					window_.close();
-				}
+				if(event.type == Event::Closed) window_.close();
 				
 				if(event.type == Event::MouseButtonPressed){
 					if(Mouse::isButtonPressed(Mouse::Left)){
@@ -100,7 +102,6 @@ public:
 					}
 				}
 			}
-			
 			// Draw the sprites
 			window_.draw(background_sprite);
 			window_.draw(title_sprite);
@@ -117,15 +118,7 @@ public:
 private:
 	RenderWindow window_;
 	Font font;
-
-	Texture background_texture;
-	Sprite background_sprite;
-
-	Texture title_texture;
-	Sprite title_sprite;
+	Texture background_texture, title_texture, buttons_texture;
+	Sprite button1_sprite, button2_sprite, background_sprite, title_sprite;
 	Text title_text;
-
-	Texture buttons_texture;
-	Sprite button1_sprite;
-	Sprite button2_sprite;
 };

@@ -157,10 +157,10 @@ int main(){
 						Captured = false;
 					}
 				}
-				if(event.type == Event::MouseButtonPressed) {
+				if(event.type == Event::MouseButtonPressed){
 					Vector2i MousePos = Mouse::getPosition(window);
 
-					if(PlayerTurn && !GameOver) {
+					if(PlayerTurn && !GameOver){
 						if(OpenHandButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 							if(ComputerCaptured){
 								GameOver = true;
