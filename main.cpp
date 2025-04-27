@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <random>
 #include <map>
 #include <string>
@@ -10,6 +11,7 @@
 using std::map; using std::string; using std::vector; using std::cerr; using std::endl; using std::ifstream; using std::to_string;
 using std::istreambuf_iterator; using std::random_device; using std::uniform_int_distribution; using std::mt19937;
 using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; using sf::VideoMode; using sf::Font; using sf::Text; using sf::Mouse;
+using sf::SoundBuffer; using sf::Sound;
 
 void FileReader(const string& filename, vector<unsigned char>& FontData){
 	ifstream file;
@@ -51,6 +53,8 @@ int main(){
 	uniform_int_distribution<> move(0, 2);
 	vector<unsigned char> FontData;
 	Font font;
+	SoundBuffer buffer;
+	Sound sound;
 	int count = 0;
 	bool GameOver, Won, Captured, ComputerCaptured, PlayerTurn = false;
 
@@ -61,6 +65,12 @@ int main(){
 
 	if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
+	//if (!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.mp3")) {
+		// Error loading the sound file
+		//return -1;
+	//}
+	//sound.setBuffer(buffer);
+	//sound.play();
 	Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
 
 	CaptureText.setString("Capture");
