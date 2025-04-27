@@ -33,7 +33,7 @@ void SetText(Text& text, float x, float y){
 
 map<string, Texture> TextureLoad(){
     map<string, Texture> TextureMap;
-    vector<string> TextureNames = {"tablewithblock.png", "welcome_button.png","geisha.png", "open_hand_computer.png","background.png","object_in_center.png","computer_fist_on_table.png"};
+    vector<string> TextureNames = {"tablewithoutblock.png", "tablewithblock.png", "welcome_button.png","geisha.png", "open_hand_computer.png","background.png","object_in_center.png","computer_fist_on_table.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -106,7 +106,7 @@ int main(){
 
 		map<string, Texture> TextureMap = TextureLoad();
 
-		Sprite TableWithBlock(TextureMap.at("tablewithblock.png")), Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
+		Sprite TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), Geisha(TextureMap.at("geisha.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("background.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
 		Background.setScale(1.6, 1.6);
 		OpenHandButton.setScale(0.5, 0.5);
@@ -120,6 +120,7 @@ int main(){
 		CaptureButton.setPosition(1300.0f, 900.0f);
 		Geisha.setPosition(600.0f, 250.0f);
 		TableWithBlock.setPosition(780.0f, 630.0f);
+		TableWithoutBlock.setPosition(780.0f, 630.0f);
 		Background.setOrigin(0, 220.f);
 	
 		while(window.isOpen()){
@@ -189,11 +190,13 @@ int main(){
 			window.draw(OpenText);
 			window.draw(FistButton);
 			window.draw(CloseText);
-			window.draw(TableWithBlock);
 
-			if(!ComputerCaptured){
+			if(!ComputerCaptured && !Captured){
 				window.draw(CaptureButton);
 				window.draw(CaptureText);
+				window.draw(TableWithBlock);
+			}else{
+				window.draw(TableWithoutBlock);
 			}
 			if(GameOver){
 				if(Won) window.draw(WonText);
