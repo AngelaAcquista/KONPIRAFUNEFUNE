@@ -35,7 +35,7 @@ void SetText(Text& text, float x, float y){
 }
 
 void TextureLoad(map<string, Texture>& TextureMap){
-    vector<string> TextureNames = {"tablewithoutblock.png", "backgroundforgame.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png"};
+    vector<string> TextureNames = {"tablewithoutblock.png", "closebutton.png", "backgroundforgame.png", "welcome_title.png", "tablewithblock.png", "welcome_button.png"};
 
     for(const string& name : TextureNames){
         Texture texture;
@@ -76,38 +76,33 @@ int main(){
 
 		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
-		Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
+		Text CaptureText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
 
 		CaptureText.setString("Capture");
-		CloseText.setString("Close");
 		OpenText.setString("Open");
 		LostText.setString("You Lost!");
 		WonText.setString("You Won!");
 		TryAgainText.setString("Try Again?");
 
 		CaptureText.setCharacterSize(24);
-		CloseText.setCharacterSize(24);
 		OpenText.setCharacterSize(24);
 		LostText.setCharacterSize(24);
 		WonText.setCharacterSize(24);
 		TryAgainText.setCharacterSize(24);
 
 		CaptureText.setFillColor(Color::Black);
-		CloseText.setFillColor(Color::Black);
 		OpenText.setFillColor(Color::Black);
 		LostText.setFillColor(Color::Black);
 		WonText.setFillColor(Color::Black);
 		TryAgainText.setFillColor(Color::Black);
 
 		SetText(CaptureText, 1443.0f, 1030.0f);
-		SetText(CloseText, 210.0f, 1030.0f);
 		SetText(OpenText, 840.0f, 1030.0f);
 		SetText(LostText, 800.0f, 280.0f);
 		SetText(WonText, 800.0f, 280.0f);
 		SetText(TryAgainText, 850.0f, 710.0f);
 
 		CaptureText.setScale(1.5, 1.8);
-		CloseText.setScale(2.4, 1.5);
 		OpenText.setScale(2.4, 1.5);
 		LostText.setScale(10.0, 10.0);
 		WonText.setScale(10.0, 10.0);
@@ -120,17 +115,16 @@ int main(){
 
 		TextureLoad(TextureMap);
 
-		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("backgroundforgame.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("welcome_button.png")), CaptureButton(TextureMap.at("welcome_button.png"));
+		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), TryAgainButton(TextureMap.at("welcome_button.png")), Background(TextureMap.at("backgroundforgame.png")), OpenHandButton(TextureMap.at("welcome_button.png")), FistButton(TextureMap.at("closebutton.png")), CaptureButton(TextureMap.at("welcome_button.png"));
 
 		Background.setScale(1.1, 1.1);
 		OpenHandButton.setScale(0.5, 0.5);
-		FistButton.setScale(0.5, 0.5);
 		CaptureButton.setScale(0.5, 0.5);
 		TryAgainButton.setScale(0.9, 0.9);
 		GameOverSign.setScale(0.6, 0.8);
 
 		OpenHandButton.setPosition(700.0f, 900.0f);
-		FistButton.setPosition(70.0f, 900.0f);
+		FistButton.setPosition(70.0f, 920.0f);
 		TryAgainButton.setPosition(600.0f, 480.0f);
 		CaptureButton.setPosition(1300.0f, 900.0f);
 		TableWithBlock.setPosition(830.0f, 680.0f);
@@ -141,7 +135,6 @@ int main(){
 		staticLayerTexture.draw(OpenHandButton);
 		staticLayerTexture.draw(FistButton);
 		staticLayerTexture.draw(OpenText);
-		staticLayerTexture.draw(CloseText);
 		staticLayerTexture.display();
 		Sprite staticLayer(staticLayerTexture.getTexture());
 
@@ -157,7 +150,7 @@ int main(){
 				if(!PlayerTurn){
 					PlayerTurn = true;
 
-					if(!Captured && count % 10 == 0) ComputerCaptured = true;
+					if(!Captured && count % 7 == 0) ComputerCaptured = true;
 					else{
 						Captured = false;
 						computermove = move(gen);
