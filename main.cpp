@@ -139,6 +139,7 @@ int main(){
 							GameOver = true;
 							Won = true;
 						}
+						Captured = false;
 					}
 					if(computermove == 1){
 						//close
@@ -157,6 +158,7 @@ int main(){
 							GameOver = true;
 							Won = false;
 						}
+						ComputerCaptured = false;
 						PlayerWent = true;
 					}
 					if(!GameOver && FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
@@ -174,9 +176,7 @@ int main(){
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 						GameOver = false;
 						Won = false;
-						ComputerCaptured = false;
 						PlayerWent = false;
-						Captured = false;
 					}
 				}
 			}
