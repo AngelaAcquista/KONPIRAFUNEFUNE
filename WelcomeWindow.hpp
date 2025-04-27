@@ -10,6 +10,7 @@
 using std::istreambuf_iterator; using std::string; using std::vector; using std::ifstream; using std::cerr; using std::endl; using std::map;
 using sf::FloatRect; using sf::Text; using sf::Vector2f; using sf::VideoMode; using sf::Color; using sf::Event; using sf::Vector2i;
 using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow; using sf::SoundBuffer; using sf::Sound;
+using sf::RenderTexture;
 
 void ReaderFile(const string& filename, vector<unsigned char>& FontData){
 	ifstream file;
@@ -37,6 +38,10 @@ public:
 
 	WelcomeWindow(){
 		window_.create(VideoMode(1600, 1200), "Konpira");
+
+		if(!staticLayerTexture.create(1600, 1200)) cerr << "Failed to create static layer texture" << endl;
+
+		staticLayerTexture.clear(Color::Transparent);
 		// Set up the background
 		background_texture.loadFromFile("files/background.png");
 		background_sprite.setTexture(background_texture);
@@ -57,7 +62,6 @@ public:
 		button2_sprite.setScale(0.6, 0.6); //300*300
 		button1_sprite.setPosition(450.f, 650.f);
 		button2_sprite.setPosition(850.f, 650.f);
-
 		// Set up the texts
 		vector<unsigned char> FontData;
 
@@ -79,6 +83,13 @@ public:
 
 		ShowVideo = false;
 		GameStart = false;
+		staticLayerTexture.draw(background_sprite);
+		staticLayerTexture.draw(button2_sprite);
+		staticLayerTexture.draw(button1_sprite);
+		staticLayerTexture.draw(title_sprite);
+		staticLayerTexture.draw(title_text);
+		staticLayerTexture.display();
+		staticLayer.setTexture(staticLayerTexture.getTexture());
 	}
 
 	void Run(){
@@ -114,14 +125,7 @@ public:
 					}
 				}
 			}
-			// Draw the sprites
-			window_.draw(background_sprite);
-			window_.draw(title_sprite);
-			window_.draw(button1_sprite);
-			window_.draw(button2_sprite);
-
-			//Draw text
-			window_.draw(title_text);
+			window_.draw(staticLayer);
 
 			window_.display();
 		}
@@ -130,9 +134,10 @@ public:
 private:
 	RenderWindow window_;
 	Font font;
+	RenderTexture staticLayerTexture;
 	SoundBuffer buffer;
 	Sound sound;
 	Texture background_texture, title_texture, buttons_texture;
-	Sprite button1_sprite, button2_sprite, background_sprite, title_sprite;
+	Sprite button1_sprite, button2_sprite, background_sprite, title_sprite, staticLayer;
 	Text title_text;
 };
