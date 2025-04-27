@@ -136,8 +136,10 @@ int main(){
 
 				if(!PlayerTurn){
 					PlayerTurn = true;
-					if(!Captured && count % 3 == 0) ComputerCaptured = true;
+
+					if(!Captured && count % 5 == 0) ComputerCaptured = true;
 					else{
+						Captured = false;
 						computermove = move(gen);
 						if(computermove == 0){ //fist or close option
 							GameOver = true;
@@ -156,19 +158,21 @@ int main(){
 								Won = false;
 							}
 							ComputerCaptured = false;
-						}
-						if(FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							PlayerTurn = false;
+							count++;
+						}else if(FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 							if(!ComputerCaptured){
 								GameOver = true;
 								Won = false;
 							}
 							ComputerCaptured = false;
-						}
-						if(CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							PlayerTurn = false;
+							count++;
+						}else if(CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 							Captured = true;
+							PlayerTurn = false;
+							count++;
 						}
-						PlayerTurn = false;
-						count++;
 					}
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
 						GameOver = false;
