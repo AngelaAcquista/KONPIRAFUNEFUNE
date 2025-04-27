@@ -65,9 +65,6 @@ int main(){
 
 	if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
-	if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
-
-	sound.setBuffer(buffer);
 	Text CaptureText("", font), CloseText("", font), OpenText("", font), TryAgainText("", font), LostText("", font), WonText("", font);
 
 	CaptureText.setString("Capture");
@@ -110,7 +107,11 @@ int main(){
 	}
 	if(welcome_window.GameStart){
 		// Start the game
+		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
+
+		sound.setBuffer(buffer);
 		sound.play();
+
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
 
 		map<string, Texture> TextureMap = TextureLoad();

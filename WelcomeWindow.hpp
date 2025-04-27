@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -7,7 +8,7 @@
 
 using std::istreambuf_iterator; using std::string; using std::vector; using std::ifstream; using std::cerr; using std::endl;
 using sf::FloatRect; using sf::Text; using sf::Vector2f; using sf::VideoMode; using sf::Color; using sf::Event; using sf::Vector2i;
-using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow;
+using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::RenderWindow; using sf::SoundBuffer; using sf::Sound;
 
 void ReaderFile(const string& filename, vector<unsigned char>& FontData){
 	ifstream file;
@@ -61,9 +62,8 @@ public:
 
 		ReaderFile("MorganChalk-L3aJy.ttf", FontData);
 
-		if(!font.loadFromMemory(FontData.data(), FontData.size())){
-			cerr<<"Failed to open font."<<endl;
-		}
+		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
+
 		title_text.setFont(font);
 		title_text.setString("Konpira Fune Fune!");
 		title_text.setCharacterSize(56);
@@ -73,29 +73,40 @@ public:
 		setText(title_text, 800.0f, 320.0f);
 		title_text.setScale(2.4, 1.8);
 
+		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
+		sound.setBuffer(buffer);
+
 		ShowVideo = false;
 		GameStart = false;
 	}
 
 	void Run(){
+		sound.play();
 		// Window loop
 		while(window_.isOpen()){
 			// Handle event
 			Event event;
 			while(window_.pollEvent(event)){
-				if(event.type == Event::Closed) window_.close();
-				
+				if(event.type == Event::Closed){
+					sound.stop();
+					window_.close();
+				}
+				if(sound.getStatus() == Sound::Stopped) {
+					sound.play();
+				}
 				if(event.type == Event::MouseButtonPressed){
 					if(Mouse::isButtonPressed(Mouse::Left)){
 						Vector2i mouse_position = Mouse::getPosition(window_);
 						Vector2f mouse_position_f(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y));
 						// Show video button is clicked
 						if(button1_sprite.getGlobalBounds().contains(mouse_position_f)){
+							sound.stop();
 							window_.close();
 							ShowVideo = true;
 						} 
 						// Game start button is clicked
 						else if(button2_sprite.getGlobalBounds().contains(mouse_position_f)){
+							sound.stop();
 							window_.close();
 							GameStart = true;
 						}
@@ -118,6 +129,8 @@ public:
 private:
 	RenderWindow window_;
 	Font font;
+	SoundBuffer buffer;
+	Sound sound;
 	Texture background_texture, title_texture, buttons_texture;
 	Sprite button1_sprite, button2_sprite, background_sprite, title_sprite;
 	Text title_text;
