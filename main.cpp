@@ -168,7 +168,7 @@ int main(){
 						PlayerWent = true;
 					}
 					if(!GameOver && CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
-						ComputerCaptured = true;
+						Captured = true;
 						PlayerWent = true;
 					}
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
@@ -179,7 +179,6 @@ int main(){
 						Captured = false;
 					}
 				}
-	
 			}
 			window.clear();
 
