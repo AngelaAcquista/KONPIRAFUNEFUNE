@@ -189,7 +189,7 @@ int main(){
 			window.draw(FistButton);
 			window.draw(CloseText);
 
-			if(!Captured){
+			if(!ComputerCaptured){
 				window.draw(CaptureButton);
 				window.draw(CaptureText);
 			}
