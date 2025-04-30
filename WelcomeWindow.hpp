@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <windows.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -30,6 +31,18 @@ void setText(Text &text, float x, float y){
 
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
 	text.setPosition(Vector2f(x, y));
+}
+
+void openURL(const std::string& url){
+	#ifdef _WIN32 // Windows system
+		ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	#elif _APPLE_ // macOS system
+		string cmd = "open" + url;
+		system(cmd.c_str());
+	#else // Linux system
+		string cmd = "edg-open " + ufl;
+		system(cmd.c_str());
+	#endif
 }
 
 class WelcomeWindow{
@@ -62,6 +75,7 @@ public:
 		button2_sprite.setScale(0.6, 0.6); //300*300
 		button1_sprite.setPosition(450.f, 650.f);
 		button2_sprite.setPosition(850.f, 650.f);
+
 		// Set up the texts
 		vector<unsigned char> FontData;
 
@@ -69,14 +83,30 @@ public:
 
 		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
+		// Title text
 		title_text.setFont(font);
 		title_text.setString("Konpira Fune Fune!");
 		title_text.setCharacterSize(56);
 		title_text.setStyle(Text::Bold);
 		title_text.setFillColor(Color::Black);
-
-		setText(title_text, 800.0f, 320.0f);
+		setText(title_text, 800.f, 340.f);
 		title_text.setScale(2.4, 1.8);
+
+		// Demo video button text
+		video_text.setFont(font);
+		video_text.setString("Launch\nDemo Video");
+		video_text.setCharacterSize(45);
+		video_text.setStyle(Text::Bold);
+		video_text.setFillColor(Color::Black);
+		setText(video_text, 600.f, 800.f);
+
+		// Game start button text
+		gamestart_text.setFont(font);
+		gamestart_text.setString("Start!");
+		gamestart_text.setCharacterSize(45);
+		gamestart_text.setStyle(Text::Bold);
+		gamestart_text.setFillColor(Color::Black);
+		setText(gamestart_text, 1000.f, 800.f);
 
 		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
 		sound.setBuffer(buffer);
@@ -88,6 +118,8 @@ public:
 		staticLayerTexture.draw(button1_sprite);
 		staticLayerTexture.draw(title_sprite);
 		staticLayerTexture.draw(title_text);
+		staticLayerTexture.draw(video_text);
+		staticLayerTexture.draw(gamestart_text);
 		staticLayerTexture.display();
 		staticLayer.setTexture(staticLayerTexture.getTexture());
 	}
@@ -103,18 +135,20 @@ public:
 					sound.stop();
 					window_.close();
 				}
-				if(sound.getStatus() == Sound::Stopped) {
+
+				// Control the music when the user leaves or enters the window
+				if (event.type == Event::LostFocus)
+					sound.stop();
+				if (event.type == Event::GainedFocus)
 					sound.play();
-				}
+
 				if(event.type == Event::MouseButtonPressed){
 					if(Mouse::isButtonPressed(Mouse::Left)){
 						Vector2i mouse_position = Mouse::getPosition(window_);
 						Vector2f mouse_position_f(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y));
 						// Show video button is clicked
 						if(button1_sprite.getGlobalBounds().contains(mouse_position_f)){
-							sound.stop();
-							window_.close();
-							ShowVideo = true;
+							openURL("https://www.youtube.com/watch?v=Tv0y8asP-lM");
 						}
 						// Game start button is clicked
 						else if(button2_sprite.getGlobalBounds().contains(mouse_position_f)){
@@ -139,5 +173,5 @@ private:
 	Sound sound;
 	Texture background_texture, title_texture, buttons_texture;
 	Sprite button1_sprite, button2_sprite, background_sprite, title_sprite, staticLayer;
-	Text title_text;
+	Text title_text, video_text, gamestart_text;
 };

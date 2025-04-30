@@ -46,12 +46,10 @@ void TextureLoad(map<string, Texture>& TextureMap){
 }
 
 int main(){
+	// Launch the welcome window
 	WelcomeWindow welcome_window;
 	welcome_window.Run();
-
-	if(welcome_window.ShowVideo){
-		// Play the demo video
-	}
+	
 	if(welcome_window.GameStart){
 		// Start the game
 		RenderWindow window(VideoMode(1600, 1200), "Konpira");
