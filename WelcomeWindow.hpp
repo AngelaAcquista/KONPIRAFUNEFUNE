@@ -14,6 +14,11 @@ using sf::Mouse; using sf::Font; using sf::Texture; using sf::Sprite; using sf::
 using sf::RenderTexture;
 
 void ReaderFile(const string& filename, vector<unsigned char>& FontData){
+	/*
+	Pass in a file path and a vector of unsigned char by reference
+	No return, but read the data from the file into the vector of unsigned char for later use
+	*/
+
 	ifstream file;
 
 	file.open("files/" + filename, std::ios::binary);
@@ -27,6 +32,11 @@ void ReaderFile(const string& filename, vector<unsigned char>& FontData){
 }
 
 void setText(Text &text, float x, float y){
+	/*
+	Pass in a sf::Text object by reference and two floats representing the position to put the text
+	No return, but set the position of the sf::Text object
+	*/
+
 	FloatRect textRect = text.getLocalBounds();
 
 	text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top + textRect.height/2.0f);
@@ -34,6 +44,11 @@ void setText(Text &text, float x, float y){
 }
 
 void openURL(const std::string& url){
+	/*
+	Pass in a string (the url to be opened) by reference
+	No return, but redirect the user to the web page based on different operating systems
+	*/
+
 	#ifdef _WIN32 // Windows system
 		ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 	#elif _APPLE_ // macOS system
@@ -50,6 +65,7 @@ public:
 	bool ShowVideo, GameStart;
 
 	WelcomeWindow(){
+		// Create the window object
 		window_.create(VideoMode(1600, 1200), "Konpira");
 
 		if(!staticLayerTexture.create(1600, 1200)) cerr << "Failed to create static layer texture" << endl;
@@ -79,8 +95,8 @@ public:
 		// Set up the texts
 		vector<unsigned char> FontData;
 
+		// Prepare the font from a local .ttf file
 		ReaderFile("MorganChalk-L3aJy.ttf", FontData);
-
 		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
 
 		// Title text
@@ -108,6 +124,7 @@ public:
 		gamestart_text.setFillColor(Color::Black);
 		setText(gamestart_text, 1000.f, 800.f);
 
+		// Load the sound track
 		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
 		sound.setBuffer(buffer);
 

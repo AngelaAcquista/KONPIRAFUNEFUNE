@@ -14,6 +14,11 @@ using sf::Texture; using sf::RenderWindow; using sf::Event; using sf::Sprite; us
 using sf::SoundBuffer; using sf::Sound; using sf::RenderTexture;
 
 void FileReader(const string& filename, vector<unsigned char>& FontData){
+	/*
+	Pass in a file path and a vector of unsigned char by reference
+	No return, but read the data from the file into the vector of unsigned char for later use
+	*/
+
 	ifstream file;
 
 	file.open("files/" + filename, std::ios::binary);
@@ -28,6 +33,11 @@ void FileReader(const string& filename, vector<unsigned char>& FontData){
 }
 
 void SetText(Text& text, float x, float y){
+	/*
+	Pass in a sf::Text object by reference and two floats representing the position to put the text
+	No return, but set the position of the sf::Text object
+	*/
+
 	FloatRect TextRect = text.getLocalBounds();
 
 	text.setOrigin(TextRect.left + TextRect.width/2.0f,TextRect.top + TextRect.height/2.0f);
@@ -35,6 +45,11 @@ void SetText(Text& text, float x, float y){
 }
 
 void TextureLoad(map<string, Texture>& TextureMap){
+	/*
+	Pass in a map with file names as the keys and their corresponding sf::Texture objects as the values by reference
+	No return, but load the sf::Texture objects from the local .png files
+	*/
+
     vector<string> TextureNames = {"tryagainbutton.png","capturebutton.png", "openbutton.png", "tablewithoutblock.png", "closebutton.png", "backgroundforgame.png", "welcome_title.png", "tablewithblock.png"};
 
     for(const string& name : TextureNames){
