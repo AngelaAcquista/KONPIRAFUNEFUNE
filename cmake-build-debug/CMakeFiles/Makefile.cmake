@@ -34,12 +34,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.30.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.30.5/CMakeRCCompiler.cmake"
   "CMakeFiles/3.30.5/CMakeSystem.cmake"
-  "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLConfig.cmake"
-  "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLConfigDependencies.cmake"
-  "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLConfigVersion.cmake"
-  "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets-debug.cmake"
-  "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets-release.cmake"
-  "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets.cmake"
+  "C:/msys64/mingw64/lib/cmake/SFML/SFMLConfig.cmake"
+  "C:/msys64/mingw64/lib/cmake/SFML/SFMLConfigDependencies.cmake"
+  "C:/msys64/mingw64/lib/cmake/SFML/SFMLConfigVersion.cmake"
+  "C:/msys64/mingw64/lib/cmake/SFML/SFMLSharedTargets-release.cmake"
+  "C:/msys64/mingw64/lib/cmake/SFML/SFMLSharedTargets.cmake"
   )
 
 # The corresponding makefile is:

@@ -248,6 +248,9 @@ FINAL_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 FINAL_SOURCE_DIR:STATIC=C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE
 
+//The directory containing a CMake configuration file for SFML.
+SFML_DIR:PATH=C:/msys64/mingw64/lib/cmake/SFML
+
 //Path to a file.
 SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 

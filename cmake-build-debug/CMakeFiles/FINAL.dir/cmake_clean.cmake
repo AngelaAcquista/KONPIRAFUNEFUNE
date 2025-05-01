@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
+  "C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/FINAL.exe"
+  "C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/FINAL.exe.manifest"
+  "C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/FINAL.pdb"
   "CMakeFiles/FINAL.dir/main.cpp.obj"
   "CMakeFiles/FINAL.dir/main.cpp.obj.d"
-  "FINAL.exe"
-  "FINAL.exe.manifest"
-  "FINAL.pdb"
   "libFINAL.dll.a"
 )
 

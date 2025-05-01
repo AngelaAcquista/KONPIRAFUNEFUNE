@@ -152,27 +152,23 @@
 		},
 		{
 			"isExternal" : true,
-			"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLConfigVersion.cmake"
+			"path" : "C:/msys64/mingw64/lib/cmake/SFML/SFMLConfigVersion.cmake"
 		},
 		{
 			"isExternal" : true,
-			"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLConfig.cmake"
+			"path" : "C:/msys64/mingw64/lib/cmake/SFML/SFMLConfig.cmake"
 		},
 		{
 			"isExternal" : true,
-			"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets.cmake"
+			"path" : "C:/msys64/mingw64/lib/cmake/SFML/SFMLSharedTargets.cmake"
 		},
 		{
 			"isExternal" : true,
-			"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets-debug.cmake"
+			"path" : "C:/msys64/mingw64/lib/cmake/SFML/SFMLSharedTargets-release.cmake"
 		},
 		{
 			"isExternal" : true,
-			"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets-release.cmake"
-		},
-		{
-			"isExternal" : true,
-			"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/lib/cmake/SFML/SFMLConfigDependencies.cmake"
+			"path" : "C:/msys64/mingw64/lib/cmake/SFML/SFMLConfigDependencies.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",

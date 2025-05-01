@@ -148,7 +148,7 @@ int main(){
 					else{
 						Captured = false;
 						computermove = move(gen);
-						if(computermove == 0 && count > 5){ //fist or close option
+						if(computermove == 0 && count > 5){ //mess up option
 							GameOver = true;
 							Won = true;
 						}

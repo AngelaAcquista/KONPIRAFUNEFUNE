@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "FINAL.exe"
+			"path" : "C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/FINAL.exe"
 		},
 		{
-			"path" : "FINAL.pdb"
+			"path" : "C:/Users/acqui/CLionProjects/KONPIRAFUNEFUNE/FINAL.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -28,13 +28,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 16,
+				"line" : 13,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 18,
+				"line" : 15,
 				"parent" : 0
 			}
 		]
@@ -53,7 +53,7 @@
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Users/acqui/Downloads/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit/SFML-2.5.1/include"
+					"path" : "C:/msys64/mingw64/include"
 				}
 			],
 			"language" : "CXX",
@@ -86,22 +86,22 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\acqui\\Downloads\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-graphics-d.a",
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-graphics.dll.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\acqui\\Downloads\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-audio-d.a",
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-audio.dll.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\acqui\\Downloads\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-window-d.a",
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-window.dll.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\acqui\\Downloads\\SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit\\SFML-2.5.1\\lib\\libsfml-system-d.a",
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-system.dll.a",
 				"role" : "libraries"
 			},
 			{
