@@ -27,4 +27,5 @@ Konpira Fune Fune is a traditional Japanese drinking game played by Maiko and Ge
 
 6. Run the game
 	```
-	./FINAL.exe	```
+	./FINAL.exe
+ 	```
