@@ -15,7 +15,7 @@ Konpira Fune Fune is a traditional Japanese drinking game played by Maiko and Ge
 	cd build
 	```
 
-4. Run CMake to generate build files
+4. Run CMake to generate build files. Make sure to add your own filepath to SFML library in CMakeLists.txt
 	```
 	cmake ..
 	```
