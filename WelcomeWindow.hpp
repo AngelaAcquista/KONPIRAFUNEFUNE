@@ -47,14 +47,21 @@ void openURL(const std::string& url){
 	/*
 	Pass in a string (the url to be opened) by reference
 	No return, but redirect the user to the web page based on different operating systems
+
+	Parts of the code are cited from:
+	https://stackoverflow.com/questions/17347950/how-do-i-open-a-url-from-c?noredirect=1&lq=1
+	https://stackoverflow.com/questions/33117233/what-is-the-purpose-of-using-ifdef-and-if-in-c
 	*/
 
-	#ifdef _WIN32 // Windows system
+	// Windows system
+	#ifdef _WIN32
 		ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
-	#elif _APPLE_ // macOS system
+	// macOS system
+	#elif _APPLE_
 		string cmd = "open" + url;
 		system(cmd.c_str());
-	#else // Linux system
+	// Linux system
+	#else
 		string cmd = "edg-open " + ufl;
 		system(cmd.c_str());
 	#endif
