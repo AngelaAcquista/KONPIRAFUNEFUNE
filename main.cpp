@@ -88,7 +88,7 @@ int main(){
 		FileReader("MorganChalk-L3aJy.ttf", FontData);
 
 		if(!font.loadFromMemory(FontData.data(), FontData.size())) cerr<<"Failed to open font."<<endl;
-
+		//these are the endgame texts and their respective positions and size
 		Text LostText("", font), WonText("", font);
 
 		LostText.setString("You Lost!");
@@ -105,14 +105,14 @@ int main(){
 
 		LostText.setScale(10.0, 10.0);
 		WonText.setScale(10.0, 10.0);
-
+		//starts sound
 		if(!buffer.loadFromFile("files/KonpiraFuneFune_soundtrack.wav")) cerr<<"Failed to load soundtrack"<<endl;
 
 		sound.setBuffer(buffer);
 		sound.play();
-
+		//loads textures
 		TextureLoad(TextureMap);
-
+		//makes sprites and their respective postitions
 		Sprite GameOverSign(TextureMap.at("welcome_title.png")), TableWithoutBlock(TextureMap.at("tablewithoutblock.png")), TableWithBlock(TextureMap.at("tablewithblock.png")), TryAgainButton(TextureMap.at("tryagainbutton.png")), Background(TextureMap.at("backgroundforgame.png")), OpenHandButton(TextureMap.at("openbutton.png")), FistButton(TextureMap.at("closebutton.png")), CaptureButton(TextureMap.at("capturebutton.png"));
 
 		Background.setScale(1.1, 1.1);
@@ -125,13 +125,15 @@ int main(){
 		TableWithBlock.setPosition(830.0f, 680.0f);
 		TableWithoutBlock.setPosition(800.0f, 670.0f);
 		GameOverSign.setPosition(200.f, -500.f);
-
+		//everything that remains unchanging during the game I set as one sprite so that it doesn't have to redraw it as individual stuff every iteration
 		staticLayerTexture.draw(Background);
 		staticLayerTexture.draw(OpenHandButton);
 		staticLayerTexture.draw(FistButton);
-		staticLayerTexture.display();
-		Sprite staticLayer(staticLayerTexture.getTexture());
 
+		staticLayerTexture.display();
+
+		Sprite staticLayer(staticLayerTexture.getTexture());
+		//game loop
 		while(window.isOpen()){
 			Event event;
 
@@ -141,6 +143,7 @@ int main(){
 				if(sound.getStatus() == Sound::Stopped) {
 					sound.play();
 				}
+				//computer only plays if it's not the player's turn
 				if(!PlayerTurn){
 					PlayerTurn = true;
 
@@ -148,7 +151,8 @@ int main(){
 					else{
 						Captured = false;
 						computermove = move(gen);
-						if(computermove == 0 && count > 5){ //mess up option
+						//random mess up option
+						if(computermove == 0 && count > 5){
 							GameOver = true;
 							Won = true;
 						}
@@ -157,9 +161,10 @@ int main(){
 				}
 				if(event.type == Event::MouseButtonPressed){
 					Vector2i MousePos = Mouse::getPosition(window);
-
+					//makes sure player can't make a move when it's not their turn or when the game is over
 					if(PlayerTurn && !GameOver){
 						if(OpenHandButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							//when the player plays an open hand while the computer has it captured it ends the game and the player loses
 							if(ComputerCaptured){
 								GameOver = true;
 								Won = false;
@@ -168,6 +173,7 @@ int main(){
 							PlayerTurn = false;
 							count++;
 						}else if(FistButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							//when the player plays a closed hand while the computer doesn't have it captured it ends the game and the player loses
 							if(!ComputerCaptured){
 								GameOver = true;
 								Won = false;
@@ -176,12 +182,14 @@ int main(){
 							PlayerTurn = false;
 							count++;
 						}else if(!ComputerCaptured && CaptureButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+							//allows player to capture when it's not captured by the computer
 							Captured = true;
 							PlayerTurn = false;
 							count++;
 						}
 					}
 					if(TryAgainButton.getGlobalBounds().contains(static_cast<float>(MousePos.x), static_cast<float>(MousePos.y))){
+						//at the end of the game it resets everything when pressed and allows the player to start a new game if they want
 						GameOver = false;
 						Won = false;
 						PlayerTurn = false;
@@ -193,15 +201,15 @@ int main(){
 			window.clear();
 
 			window.draw(staticLayer);
-
+			//the capture button and table with the block in center only show up if the block hasn't been captured by either the player or the computer
 			if(!ComputerCaptured && !Captured){
 				window.draw(CaptureButton);
 				window.draw(TableWithBlock);
 			}else window.draw(TableWithoutBlock);
-
+			//only drawn if the game is over
 			if(GameOver){
 				window.draw(GameOverSign);
-
+				//if the player won it shows the winner text, otherwise it draws the loser text
 				if(Won) window.draw(WonText);
 				else window.draw(LostText);
 
